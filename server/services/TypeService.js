@@ -1,14 +1,24 @@
-class TypeService {
-    async create() {
+import { Type } from "../db/models/index.js";
+import ApiError from "../exceptions/ApiError.js";
 
+class TypeService {
+    async create(name) {
+        const type = await Type.create({name});
+        return type;
     }
 
-    async getOne() {
-
+    async getOne(id) {
+        const type = await Type.findByPk(id);
+        if(!type) {
+            throw ApiError.badRequest('Такого "типа" не существует')
+        }
+        
+        return type;
     }
 
     async getAll() {
-
+        const types = await Type.findAll();
+        return types;
     }
 }
 
