@@ -8,7 +8,6 @@ const UserInfo = sequelize.define('UserInfo', {
     name: {type: DataTypes.STRING, allowNull: false},
     surname: {type: DataTypes.STRING, allowNull: false},
     profile_picture: {type: DataTypes.STRING, allowNull: true},
-    isActivated: {type: DataTypes.BOOLEAN, defaultValue: false},
     exp: {type: DataTypes.INTEGER, defaultValue: 0},
     lvl: {type: DataTypes.INTEGER, defaultValue: 0},
     user_id: {type: DataTypes.INTEGER, allowNull: false, references: {model: User, key: 'id'}}

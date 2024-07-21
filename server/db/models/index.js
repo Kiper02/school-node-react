@@ -2,6 +2,7 @@ import Achievemnt from "./Achievement.js";
 import Task from "./Task.js";
 import TaskUser from "./TaskUser.js";
 import Theory from "./Theory.js";
+import Token from "./Token.js";
 import Type from "./Type.js";
 import User from "./User.js";
 import UserAchievement from "./UserAchievement.js";
@@ -18,6 +19,9 @@ Achievemnt.belongsToMany(User, {through: UserAchievement});
 User.belongsToMany(Task, {through: TaskUser});
 Task.belongsToMany(User, {through: TaskUser});
 
+User.hasOne(Token);
+Token.belongsTo(User);
+
 Task.hasOne(Theory);
 Theory.belongsTo(Task);
 
@@ -31,4 +35,5 @@ export {
     Theory,
     Type,
     User,
+    Token
 }
