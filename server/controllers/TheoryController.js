@@ -1,7 +1,10 @@
+import TheoryService from "../services/TheoryService.js";
+
 class TheoryController {
     async create(req, res, next) {
         try {
-            
+            const theoryData = await TheoryService.create(req.body);
+            return res.json(theoryData);
         } catch (error) {
             next(error)
         }
@@ -9,7 +12,9 @@ class TheoryController {
 
     async getOne(req, res, next) {
         try {
-            
+            const {id} = req.body;
+            const theoryData = await TheoryService.getOne(id);
+            return res.json(id);
         } catch (error) {
             next(error)
         }
@@ -17,7 +22,8 @@ class TheoryController {
 
     async getAll(req, res, next) {
         try {
-            
+            const theoryData = await TheoryService.getAll();
+            return res.json(theoryData);
         } catch (error) {
             next(error)
         }

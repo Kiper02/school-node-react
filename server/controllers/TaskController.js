@@ -1,7 +1,10 @@
+import TaskService from "../services/TaskService.js";
+
 class TaskController {
     async create(req, res, next) {
         try {
-            
+            const taskData = await TaskService.create(req.body);
+            return res.json(taskData);
         } catch (error) {
             next(error)
         }
@@ -9,7 +12,9 @@ class TaskController {
 
     async getOne(req, res, next) {
         try {
-            
+            const {id} = req.body; 
+            const taskData = await TaskService.getOne(id);
+            return res.json(taskData); 
         } catch (error) {
             next(error)
         }
@@ -17,7 +22,8 @@ class TaskController {
 
     async getAll(req, res, next) {
         try {
-            
+            const taskData = await TaskService.getAll();
+            return res.json(taskData);
         } catch (error) {
             next(error)
         }
