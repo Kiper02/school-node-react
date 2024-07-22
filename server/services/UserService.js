@@ -1,4 +1,4 @@
-import User from "../db/models/index.js";
+import { User } from "../db/models/index.js";
 import ApiError from "../exceptions/ApiError.js";
 import {generateFromEmail} from "unique-username-generator";
 import bcrypt from 'bcrypt';

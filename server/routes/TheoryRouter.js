@@ -1,13 +1,12 @@
 import { Router } from "express";
-import TheoryController from "../controllers/TheoryController";
-import TaskController from "../controllers/TaskController";
+import TheoryController from "../controllers/TheoryController.js";
 
 const router = new Router();
 
 
-router.create('/', TheoryController.create);
-router.get('/:id', TaskController.getOne);
-router.get('/', TaskController.getAll);
+router.post('/', TheoryController.create);
+router.get('/:id', TheoryController.getOne);
+router.get('/', TheoryController.getAll);
 
 
 export default router;

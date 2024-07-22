@@ -35,4 +35,4 @@ class TokenService {
 
 
 
-export default TokenService();
+export default new TokenService();

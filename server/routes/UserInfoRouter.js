@@ -1,10 +1,10 @@
 import { Router } from "express";
-import UserInfoController from "../controllers/UserInfoController";
+import UserInfoController from "../controllers/UserInfoController.js";
 
 const router = new Router();
 
 
-router.create('/', UserInfoController.create);
+router.post('/', UserInfoController.create);
 router.get('/:id', UserInfoController.getOne);
 
 

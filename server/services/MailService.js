@@ -5,21 +5,21 @@ class MailService {
 
     constructor() {
         this.transporter = nodemailer.createTransport({
-            host: precess.env.SMTP_HOST,
-            port: precess.env.SMTP_PORT,
+            host: process.env.SMTP_HOST,
+            port: process.env.SMTP_PORT,
             secure: true,
             auth: {
-                user: precess.env.SMTP_USER,
-                pass: precess.env.SMTP_PASSWORD
+                user: process.env.SMTP_USER,
+                pass: process.env.SMTP_PASSWORD
             }
         })
     }
 
     async sendActivationMail(to, link) {
         await this.transporter.sendMail({
-            from: precess.env.SMTP_USER,
+            from: process.env.SMTP_USER,
             to,
-            subject: 'Активация аккаунта ' + precess.env.SMTP_API_URL,
+            subject: 'Активация аккаунта ' + process.env.SMTP_API_URL,
             text: '',
             html: `
                 <div>
@@ -33,4 +33,4 @@ class MailService {
 
 
 
-export default MailService();
+export default new MailService();

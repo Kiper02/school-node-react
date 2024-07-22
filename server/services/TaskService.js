@@ -1,5 +1,5 @@
 import { Task } from "../db/models/index.js";
-import ApiError from "../exceptions/ApiError";
+import ApiError from "../exceptions/ApiError.js";
 
 class TaskService {
     async create(data) {

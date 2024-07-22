@@ -4,7 +4,7 @@ import AchievementController from "../controllers/AchievementController.js";
 const router = new Router();
 
 
-router.create('/', AchievementController.create);
+router.post('/', AchievementController.create);
 router.get('/:id', AchievementController.getOne);
 router.get('/', AchievementController.getAll);
 
