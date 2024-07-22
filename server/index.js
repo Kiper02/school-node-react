@@ -5,6 +5,7 @@ import sequelize from './db/db.js';
 import router from './routes/index.js';
 import ErrorMiaddleware from './middlewares/ErrorMiaddleware.js';
 import cookieParser from 'cookie-parser';
+import fileUpload from 'express-fileupload';
 
 const PORT = process.env.PORT || 5000
 const app = express();
@@ -12,6 +13,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
+app.use(fileUpload({}))
 app.use('/api', router);
 
 

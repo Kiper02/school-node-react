@@ -35,5 +35,6 @@ export {
     Theory,
     Type,
     User,
-    Token
+    Token,
+    UserInfo
 }

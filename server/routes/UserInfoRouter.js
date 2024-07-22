@@ -5,7 +5,7 @@ const router = new Router();
 
 
 router.create('/', UserInfoController.create);
-router.get('/:id', UserInfoController.get);
+router.get('/:id', UserInfoController.getOne);
 
 
 
