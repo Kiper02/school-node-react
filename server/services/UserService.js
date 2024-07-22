@@ -10,15 +10,16 @@ import TokenService from "./TokenService.js";
 
 
 class UserService {
-    async registration(password, email) {
+    async registration(email, password) {
         const candidate = await User.findOne({where: {email}});
         if(candidate) {
             throw ApiError.badRequest('Такой пользователь уже существует')
         }
         const activationLink = uuidv4();
-        const hashPassword = bcrypt.hash(password, 3);
+        const hashPassword = await bcrypt.hash(password, 3);
         const username = generateFromEmail(email, 3);
-        const user = await User.create({email, password: hashPassword, name: username, activationLink});
+        console.log(email);
+        const user = await User.create({email: email, password: hashPassword, name: username, activationLink});
         await MailService.sendActivationMail(email, `${process.env.API_URL}/api/user/activate/${activationLink}`);
 
         const userDto = new UserDto(user);
