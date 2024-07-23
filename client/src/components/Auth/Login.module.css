@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+.body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+    background-color: #161D27;
+}
+
+.form_wrapp {
+    width: 350px;
+    height: 300px;
+    padding-top: 50px;
+    padding-left: 25px;
+    padding-right: 25px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+
+
+    border-radius: 20px;
+    background-color: #fff;
+}
+
+.heading {
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
+    font-size: 23px;
+    line-height: 29px;
+
+    color: #212121;
+}
+
+.input {
+    padding: 2px 10px;
+
+    width: 300px;
+    height: 35px;
+
+    border-radius: 10px;
+    border: 1px solid #E2E4E8;
+
+    color: #2c2c2c;
+}
+
+.pass {
+    display: block;
+    position: relative;
+}
+
+.img {
+    position: absolute;
+    right: 10px;
+    top: 25%;
+}
+
+.img:hover {
+    fill: #26A747;
+}
+
+.buttons_wrapp {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn_login {
+    padding: 8px 65px;
+
+    font-size: 14px;
+    font-weight: 400;
+
+    border-radius: 10px;
+    background-color: #C5F7DE;
+    color: #a7a8aa;
+}
+
+.btn_reg {
+    padding: 8px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 14px;
+    font-weight: 400;
+
+    border-radius: 10px;
+    border: 1px solid #E2E4E8;
+    color: #464647;
+}
+
+.reset {
+    margin-top: 22px;
+    font-size: 11px;
+    color: #a7a8aa;
+}
