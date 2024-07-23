@@ -1,4 +1,4 @@
-import Achievemnt from "./Achievement.js";
+import Achievement from "./Achievement.js";
 import Task from "./Task.js";
 import TaskUser from "./TaskUser.js";
 import Theory from "./Theory.js";
@@ -13,8 +13,8 @@ import UserInfo from "./UserInfo.js";
 User.hasOne(UserInfo);
 UserInfo.belongsTo(User);
 
-User.belongsToMany(Achievemnt, {through: UserAchievement});
-Achievemnt.belongsToMany(User, {through: UserAchievement});
+User.belongsToMany(Achievement, {through: UserAchievement});
+Achievement.belongsToMany(User, {through: UserAchievement});
 
 User.belongsToMany(Task, {through: TaskUser});
 Task.belongsToMany(User, {through: TaskUser});
@@ -30,7 +30,7 @@ Task.belongsTo(Type, {foreignKey: 'type_id'});
 
 
 export {
-    Achievemnt,
+    Achievement,
     Task,
     Theory,
     Type,
