@@ -3,7 +3,8 @@ import UserInfoService from "../services/UserInfoService.js";
 class UserInfoController {
     async create(req, res, next) {
         try {
-            const typeInfoData = await UserInfoService.create(req.body);
+            const {img} = req.files;
+            const typeInfoData = await UserInfoService.create(req.body, img);
             return res.json(typeInfoData);
         } catch (error) {
             next(error)

@@ -5,7 +5,7 @@ import User from "./User.js";
 
 const UserInfo = sequelize.define('UserInfo', {
     id: {type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true},
-    sur_name: {type: DataTypes.STRING, allowNull: false},
+    firstname: {type: DataTypes.STRING, allowNull: false},
     surname: {type: DataTypes.STRING, allowNull: false},
     profile_picture: {type: DataTypes.STRING, allowNull: true},
     exp: {type: DataTypes.INTEGER, defaultValue: 0},

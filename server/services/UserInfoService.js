@@ -5,30 +5,27 @@ import path from 'path'
 import ApiError from "../exceptions/ApiError.js";
 
 class UserInfoService {
-    async create(data) {
+    async create(data, img) {
         const firstname = faker.name.firstName();
         const surname = faker.name.lastName();
         
+
         let userInfo;
-        if(!data.img) {
+        if(!img) {
             userInfo = await UserInfo.create({
-                name: firstname,
+                firstname: firstname,
                 surname: surname,
-                exp: data.exp,
-                lvl: data.lvl,
                 user_id: data.user_id
             })
         } else {
             let fileName = uuidv4() + ".jpg"
             const __dirname = path.resolve();
-            img.mv(path.resolve(__dirname, "..", "static", fileName));
+            img.mv(path.join(__dirname, "..", "server","static", fileName));
 
             userInfo = await UserInfo.create({
-                name: firstname,
+                firstname: firstname,
                 surname: surname,
                 profile_picture: fileName,
-                exp: data.exp,
-                lvl: data.lvl,
                 user_id: data.user_id,
             })
         }
