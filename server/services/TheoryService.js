@@ -1,13 +1,24 @@
-import { Theory } from "../db/models/index.js";
+import { Task, Theory, Type } from "../db/models/index.js";
 import ApiError from "../exceptions/ApiError.js";
 
 class TheoryService {
     async create(data) {
+
+
+        const task = await Task.findOne({
+            include: [{
+                model: Type,
+                where: {name: data.type}
+            }],
+            where: {name: data.task}
+        })
+
         const theory = await Theory.create({
             name: data.name,
             description: data.description,
             text: data.text,
-            task_id: data.task_id
+            type: data.type,
+            task_id: task.id
         })
 
         return theory;

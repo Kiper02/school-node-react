@@ -1,16 +1,23 @@
-import { Task } from "../db/models/index.js";
+import { Task, Type } from "../db/models/index.js";
 import ApiError from "../exceptions/ApiError.js";
 
 class TaskService {
     async create(data) {
+        const type = await Type.findOne({where: {name: data.type}});
+        
+        // const taskCandidate = await Task.findOne({where: {name: data.name}});
+        // if(taskCandidate) {
+        //     throw ApiError.badRequest('Задача с таким именем уже существует');
+        // }
+
         const task = await Task.create({
-            type: data.type_id,
+            type_id: type.id,
             name: data.name,
             description: data.description,
             exp: data.exp,
             status: data.status,
-            task_id: data.task_id
         })
+
 
         return task;
     }

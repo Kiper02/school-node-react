@@ -8,6 +8,7 @@ const Theory = sequelize.define('Theory', {
     name: {type: DataTypes.STRING, allowNull: false},
     description: {type: DataTypes.STRING, allowNull: false},
     text: {type: DataTypes.STRING, allowNull: false},
+    type: {type: DataTypes.STRING, allowNull: false},
     task_id: {type: DataTypes.INTEGER, allowNull: false, references: {model: Task, key: 'id'}}
 })
 

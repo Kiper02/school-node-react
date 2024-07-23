@@ -25,8 +25,8 @@ Token.belongsTo(User);
 Task.hasOne(Theory);
 Theory.belongsTo(Task);
 
-Task.hasMany(Type);
-Type.belongsTo(User);
+Type.hasMany(Task, {foreignKey: 'type_id'});
+Task.belongsTo(Type, {foreignKey: 'type_id'});
 
 
 export {

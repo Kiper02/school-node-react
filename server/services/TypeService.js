@@ -3,6 +3,10 @@ import ApiError from "../exceptions/ApiError.js";
 
 class TypeService {
     async create(name) {
+        const typeCandidate = await Type.findOne({where: {name}});
+        if(typeCandidate) {
+            throw ApiError.badRequest('Такой тип уже существует');
+        }
         const type = await Type.create({name});
         return type;
     }
