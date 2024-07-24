@@ -1,4 +1,5 @@
 import {makeAutoObservable} from 'mobx'
+import TypeService from '../services/TypeService';
 
 export default class TaskStore {
     constructor() {
@@ -19,6 +20,8 @@ export default class TaskStore {
             {id: 1, name: 'Работа со стилистикой', description: 'Научимся писать код красиво', exp: 10, status: 'Not Started'},
             {id: 1, name: 'Работа с классами', description: 'Это сложная задача, советуем прочитать теорию перед прохождением', exp: 35, status: 'Not Started'},
         ];
+
+        this._error = null
         makeAutoObservable(this);
     }
 
@@ -35,6 +38,10 @@ export default class TaskStore {
         this._tasks = tasks;
     }
 
+    setError(error) {
+        this._error = error
+    }
+
     get types() {
         return this._types;
     }
@@ -45,5 +52,50 @@ export default class TaskStore {
 
     get tasks() {
         return this._tasks;
+    }
+
+    get error() {
+        return this._error;
+    }
+
+
+    async typeCreate(name) {
+        try {
+            const response = await TypeService.create(name);
+            console.log(response);
+            if(response && response.data) {
+                this.setTypes([...this._types, response.data]);
+            }
+            return response
+        } catch (error) {
+            this.setError(error);
+            console.log(error);
+        }
+    }
+
+    async typeAll() {
+        try {
+            const response = await TypeService.getAll();
+            if(response && response.data) {
+                this.setTypes(response.data);
+            }
+            return response;
+        } catch (error) {
+            this.setError(error);
+            console.log(error);
+        }
+    }
+
+    async typeOne() {
+        try {
+            const response = await TypeService.getOne();
+            if(response && response.data) {
+                return response.data
+            }
+            return response
+        } catch (error) {
+            this.setError(error);
+            console.log(error);
+        }
     }
 } 

@@ -18,6 +18,8 @@ const RegistrationComponent = () => {
     const {user} = useContext(Context);
     const navigate = useNavigate();
 
+
+
     const clickEye = () => {
         setShowEye(!showEye);
     }

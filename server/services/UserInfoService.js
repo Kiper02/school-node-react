@@ -5,35 +5,21 @@ import path from 'path'
 import ApiError from "../exceptions/ApiError.js";
 
 class UserInfoService {
-    async create(data, img) {
+    async create(id) {
         const firstname = faker.name.firstName();
         const surname = faker.name.lastName();
-        
 
-        let userInfo;
-        if(!img) {
-            userInfo = await UserInfo.create({
-                firstname: firstname,
-                surname: surname,
-                user_id: data.user_id
-            })
-        } else {
-            let fileName = uuidv4() + ".jpg"
-            const __dirname = path.resolve();
-            img.mv(path.join(__dirname, "..", "server","static", fileName));
-
-            userInfo = await UserInfo.create({
-                firstname: firstname,
-                surname: surname,
-                profile_picture: fileName,
-                user_id: data.user_id,
-            })
-        }
+        const userInfo = await UserInfo.create({
+            firstname: firstname,
+            surname: surname,
+            user_id: id
+        })
+            
         return userInfo;
     }
 
     async getOne(id) {
-        const userInfo = await UserInfo.findByPk(id);
+        const userInfo = await UserInfo.findOne({where: {user_id: id}});
         if(!userInfo) {
             throw ApiError.badRequest('Нет такой записи');
         }

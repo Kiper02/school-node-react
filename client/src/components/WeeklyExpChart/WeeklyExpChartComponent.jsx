@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, LineElement, PointElement, LinearScale, Title, CategoryScale, Tooltip, Legend } from 'chart.js';
 import styles from './WeeklyExpChart.module.css'
+import { Context } from '../../index';
+import { observer } from 'mobx-react-lite';
+
 
 // Регистрация компонентов, необходимых для создания линейного графика
 ChartJS.register(LineElement, PointElement, LinearScale, Title, CategoryScale, Tooltip, Legend);
@@ -19,6 +22,9 @@ const getCurrentWeekDays = () => {
 
 const WeeklyExpChartComponent = ({ expData }) => {
     const daysOfWeek = getCurrentWeekDays();
+    const {user} = useContext(Context)
+    
+
     const data = {
         labels: daysOfWeek,
         datasets: [
@@ -66,4 +72,4 @@ const WeeklyExpChartComponent = ({ expData }) => {
     );
 }
 
-export default WeeklyExpChartComponent;
+export default observer(WeeklyExpChartComponent);

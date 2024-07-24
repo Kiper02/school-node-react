@@ -6,6 +6,7 @@ import {v4 as uuidv4} from 'uuid';
 import MailService from "./MailService.js";
 import UserDto from "../dtos/UserDto.js";
 import TokenService from "./TokenService.js";
+import UserInfoService from "./UserInfoService.js";
 
 
 
@@ -25,7 +26,7 @@ class UserService {
         const userDto = new UserDto(user);
         const tokens = TokenService.generateTokens({...userDto});
         await TokenService.saveToken(userDto.id, tokens.refreshToken);
-
+        await UserInfoService.create(userDto.id);
         return {...tokens, user: UserDto};
     }
 

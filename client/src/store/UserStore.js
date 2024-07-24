@@ -1,11 +1,13 @@
 import {makeAutoObservable} from 'mobx'
 import AuthService from '../services/AuthService';
 import axios from 'axios';
+import UserInfoService from '../services/UserInfoService';
 
 export default class UserStore {
     constructor() {
         this._isAuth = false;
         this._user = {};
+        this._info = {}
         makeAutoObservable(this);
     }
 
@@ -18,12 +20,20 @@ export default class UserStore {
         this._user = user; 
     }
 
+    setInfo(info) {
+        this._info = info
+    }
+
     get isAuth() {
         return this._isAuth;
     }
 
     get user() {
         return this._user;
+    }
+
+    get info() {
+        return this._info;
     }
 
     async login(email, password) {
@@ -41,7 +51,6 @@ export default class UserStore {
     async registration(email, password) {
         try {
             const response = await AuthService.registration(email, password)
-            console.log(response);
             localStorage.setItem('token', response.data.accessToken);
             this.setIsAuth(true);
             this.setUser(response.data.user);
@@ -64,10 +73,20 @@ export default class UserStore {
     async checkAuth() {
         try {
             const response = await axios.get(`${process.env.REACT_APP_API_URL}/user/refresh`, {withCredentials: true})
-            console.log(response);
             localStorage.setItem('token', response.data.accessToken);
             this.setIsAuth(true);
             this.setUser(response.data.user);
+        } catch (error) {
+            console.log(error.response?.data?.message);
+        }
+    }
+
+
+    async getInfo(id) {
+        try {
+            const response = await UserInfoService.getOne(id)
+            this.setInfo(response.data);
+            return response;
         } catch (error) {
             console.log(error.response?.data?.message);
         }
