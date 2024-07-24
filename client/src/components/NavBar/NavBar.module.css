@@ -1,0 +1,25 @@
+.header {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    background-color: #161D27;
+}
+
+.navbar {
+    display: flex;
+    gap: 20px;
+}
+
+.nav_item {
+    list-style-type: none;
+
+}
+
+.link {
+    color: rgb(221, 221, 221);
+}

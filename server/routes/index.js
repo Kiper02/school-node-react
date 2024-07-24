@@ -5,6 +5,7 @@ import TheoryRouter from './TheoryRouter.js'
 import TypeRouter from './TypeRouter.js'
 import UserInfoRouter from './UserInfoRouter.js'
 import AchievementRouter from "./Achievement.js";
+import AuthMiddleware from "../middlewares/AuthMiddleware.js";
 
 
 
@@ -12,11 +13,11 @@ const router = new Router();
 
 
 router.use('/user', UserRouter);
-router.use('/achievement', AchievementRouter);
-router.use('/task', TaskRouter);
-router.use('/theory', TheoryRouter);
-router.use('/type', TypeRouter);
-router.use('/userInfo', UserInfoRouter);
+router.use('/achievement', AuthMiddleware,AchievementRouter);
+router.use('/task', AuthMiddleware, TaskRouter);
+router.use('/theory', AuthMiddleware, TheoryRouter);
+router.use('/type', AuthMiddleware, TypeRouter);
+router.use('/userInfo', AuthMiddleware, UserInfoRouter);
 
 
 export default router;

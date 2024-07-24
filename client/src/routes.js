@@ -1,6 +1,7 @@
+import LoginComponent from "./components/Auth/LoginComponent"
+import RegistrationComponent from "./components/Auth/Registration"
 import AchievementsComponent from "./pages/AchievementsComponent"
 import AdminComponent from "./pages/AdminComponent"
-import AuthComponent from "./pages/AuthComponent"
 import MapComponent from "./pages/MapComponent"
 import ProfileComponent from "./pages/ProfileComponent"
 import TaskComponent from "./pages/TaskComponent"
@@ -32,10 +33,10 @@ export const authRoutes = [
 export const publicRoutes = [
     {
         path: REGISTRATION_ROUTE,
-        element: <AuthComponent />
+        element: <RegistrationComponent />
     },
     {
         path: LOGIN_ROUTE,
-        element: <AuthComponent />
+        element: <LoginComponent />
     },
 ]

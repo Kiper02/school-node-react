@@ -2,6 +2,7 @@ import { Router } from "express";
 import UserController from "../controllers/UserController.js";
 import { body } from "express-validator";
 
+
 const router = new Router();
 
 
