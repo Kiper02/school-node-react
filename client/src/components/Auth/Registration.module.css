@@ -131,3 +131,8 @@
 
     color: red;
 }
+
+.server_error {
+    font-size: 13px;
+    color: red;
+}

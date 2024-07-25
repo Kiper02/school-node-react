@@ -44,7 +44,7 @@ export default class UserStore {
             this.setIsAuth(true);
             this.setUser(response.data.user);
         } catch (error) {
-            console.log(error.response?.data?.message);
+            throw Error(error.response?.data?.message)
         }
     }
 
@@ -56,6 +56,7 @@ export default class UserStore {
             this.setUser(response.data.user);
         } catch (error) {
             console.log(error.response?.data?.message);
+            throw Error(error.response?.data?.message)
         }
     }
 
@@ -66,7 +67,7 @@ export default class UserStore {
             this.setIsAuth(false);
             this.setUser({});
         } catch (error) {
-            console.log(error.response?.data?.message);
+            throw Error(error.response?.data?.message)
         }
     }
 
@@ -77,7 +78,7 @@ export default class UserStore {
             this.setIsAuth(true);
             this.setUser(response.data.user);
         } catch (error) {
-            console.log(error.response?.data?.message);
+            throw Error(error.response?.data?.message)
         }
     }
 
@@ -88,7 +89,7 @@ export default class UserStore {
             this.setInfo(response.data);
             return response;
         } catch (error) {
-            console.log(error.response?.data?.message);
+            throw Error(error.response?.data?.message)
         }
     }
 } 

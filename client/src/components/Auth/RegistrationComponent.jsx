@@ -1,33 +1,28 @@
-import React, { useContext, useEffect, useState } from 'react';
-import styles from './Login.module.css'
-import { NavLink,useNavigate } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import styles from './Registration.module.css'
+import { NavLink, useNavigate } from 'react-router-dom';
 import { Context } from '../../index';
 import { observer } from 'mobx-react-lite';
 import InputEmailComponent from './UI/InputEmailComponent';
 import InputPasswordComponent from './UI/InputPasswordComponent';
 import ButtonLoginComponent from './UI/ButtonLoginComponent';
 import useInput from '../../hooks/AuthHooks/useInput';
-import useValidation from '../../hooks/AuthHooks/useValidation';
 import useForm from '../../hooks/AuthHooks/useAuth';
+import useValidation from '../../hooks/AuthHooks/useValidation';
 
-const LoginComponent = () => {
+const RegistrationComponent = () => {
     const emailInput = useInput('');
     const passwordInput = useInput('');
-    const {validate} = useValidation();
     const {showEye, toggleShowEye} = useForm();
-    
+    const {validate} = useValidation();
+    const [serverError, setServerError] = useState('');
 
-
+    const {user} = useContext(Context);
     const navigate = useNavigate();
-    const {user} = useContext(Context)
-    useEffect(() => {
-        if(user.isAuth) {
-            navigate('/profile')
-        }
-    }, [user.isAuth, navigate])
-    
 
-    const handleSubmit = () => {
+
+
+    const handleSubmit = async () => {
         emailInput.setIsTouched(true);
         passwordInput.setIsTouched(true);
         const emailError = validate(emailInput.value);
@@ -39,14 +34,16 @@ const LoginComponent = () => {
 
         if(emailError === '' && passwordError === '') {
             try {
-                user.login(emailInput.value, passwordInput.value);
-                navigate('/profile')              
+                await user.registration(emailInput.value, passwordInput.value);
+                navigate('/login')
             } catch (error) {
-                console.log(error);
+                setServerError(error?.message)
             }
-
+            
         }
     }
+
+
 
     return (
         <div className={styles.body}>
@@ -58,7 +55,7 @@ const LoginComponent = () => {
                     onChange={emailInput.handleChange}
                     onBlur={emailInput.handleBlur}
                     errorEmail={emailInput.error}
-                />              
+                />
                 <InputPasswordComponent 
                     placeholder='Пароль'
                     value={passwordInput.value}
@@ -66,18 +63,21 @@ const LoginComponent = () => {
                     onBlur={passwordInput.handleBlur}
                     clickEye={toggleShowEye}
                     errorPassword={passwordInput.error}
+                    serverError={serverError}
                 />
+                {serverError && <p className={styles.server_error}>{serverError}</p>}
                 <div className={styles.buttons_wrapp}>
                     <ButtonLoginComponent 
                         onClick={handleSubmit}
-                        text='Войти'
+                        text='Зарегистрироваться'
                     />
-                    <NavLink className={styles.btn_reg} to={'/registration'}>Регистрация</NavLink>
+                    <NavLink className={styles.btn_reg} to={'/profile'}>Войти</NavLink>
                 </div>
+
                 <NavLink className={styles.reset}>Забыли пароль?</NavLink>
             </div>
         </div>
     );
 }
 
-export default observer(LoginComponent);
+export default observer(RegistrationComponent);

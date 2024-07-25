@@ -13,7 +13,7 @@ export default class ApiError extends Error {
         return new ApiError(400, message, errors);
     }
 
-    static internal() {
+    static internal(message) {
         return new ApiError(500, message);
     }
 

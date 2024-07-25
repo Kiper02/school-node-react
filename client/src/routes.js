@@ -1,5 +1,5 @@
 import LoginComponent from "./components/Auth/LoginComponent"
-import RegistrationComponent from "./components/Auth/Registration"
+import RegistrationComponent from "./components/Auth/RegistrationComponent"
 import AchievementsComponent from "./pages/AchievementsComponent"
 import AdminComponent from "./pages/AdminComponent"
 import MapComponent from "./pages/MapComponent"
