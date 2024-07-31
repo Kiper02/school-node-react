@@ -1,14 +1,10 @@
-import { Task, Type } from "../db/models/index.js";
+import { Task, Type, TaskDependency } from "../db/models/index.js";
 import ApiError from "../exceptions/ApiError.js";
 
 class TaskService {
     async create(data) {
         const type = await Type.findOne({where: {name: data.type}});
         
-        // const taskCandidate = await Task.findOne({where: {name: data.name}});
-        // if(taskCandidate) {
-        //     throw ApiError.badRequest('Задача с таким именем уже существует');
-        // }
 
         const task = await Task.create({
             type_id: type.id,
@@ -17,6 +13,10 @@ class TaskService {
             exp: data.exp,
             status: data.status,
         })
+        if(data.dep) {
+            const dep = await Task.findOne({where: {name: data.dep}});
+            await TaskDependency.create({task_id: task.id, dependency_id: dep.id});
+        }
 
 
         return task;
@@ -32,7 +32,10 @@ class TaskService {
     }
 
     async getAll() {
-        const tasks = await Task.findAll();
+        // const tasks = await Task.findAll();
+        const tasks = await Task.findAll({
+            include: [{model: Task, as: 'Dependencies'}]
+        });
         return tasks;
     }
 }

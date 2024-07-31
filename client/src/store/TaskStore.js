@@ -1,25 +1,12 @@
 import {makeAutoObservable} from 'mobx'
 import TypeService from '../services/TypeService';
+import TaskService from '../services/TaskService';
 
 export default class TaskStore {
     constructor() {
-        this._types = [
-            {id: 1, name: 'JavaScript'},
-            {id: 2, name: 'Python'},
-            {id: 3, name: 'C++'},
-        ];
-        this._theories = [
-            {id: 1, name: 'Операторы', description: '*, /, //, +, -', text: 'В этом task научимся использовать основные операторы'},
-            {id: 2, name: 'Массивы', description: '*, /, //, +, -', text: 'В этом task научимся использовать основные операторы'},
-            {id: 3, name: 'Стилистика', description: '*, /, //, +, -', text: 'В этом task научимся использовать основные операторы'},
-            {id: 4, name: 'Классы', description: '*, /, //, +, -', text: 'В этом task научимся использовать основные операторы'},
-        ];
-        this._tasks = [
-            {id: 1, name: 'Работа с операторами', description: 'Для прохождения этого этапа стоит пройти предыдущий', exp: 20, status: 'Not Started'},
-            {id: 1, name: 'Работа с массивами', description: 'Как хранить данные', exp: 25, status: 'Not Started'},
-            {id: 1, name: 'Работа со стилистикой', description: 'Научимся писать код красиво', exp: 10, status: 'Not Started'},
-            {id: 1, name: 'Работа с классами', description: 'Это сложная задача, советуем прочитать теорию перед прохождением', exp: 35, status: 'Not Started'},
-        ];
+        this._types = [];
+        this._theories = [];
+        this._tasks = [];
 
         this._error = null
         makeAutoObservable(this);
@@ -68,8 +55,7 @@ export default class TaskStore {
             }
             return response
         } catch (error) {
-            this.setError(error);
-            console.log(error);
+            throw Error(error.response?.data?.message)
         }
     }
 
@@ -81,8 +67,7 @@ export default class TaskStore {
             }
             return response;
         } catch (error) {
-            this.setError(error);
-            console.log(error);
+            throw Error(error.response?.data?.message)
         }
     }
 
@@ -94,8 +79,44 @@ export default class TaskStore {
             }
             return response
         } catch (error) {
-            this.setError(error);
-            console.log(error);
+            throw Error(error.response?.data?.message)
+        }
+    }
+
+    async taskCreate(type, name, description, exp) {
+        try {
+            const response = await TaskService.create(type, name, description, exp)
+            if(response && response.data) {
+                this.setTasks([...this.tasks. response.data])
+            }
+            return response;
+        } catch (error) {
+            throw Error(error.response?.data?.message)
+        }
+    }
+
+    async getTasksAll() {
+        try {
+            const response = await TaskService.getAll();
+            if(response && response.data) {
+                this.setTasks(response.data);
+                return response
+            }
+            return response
+        } catch (error) {
+            throw Error(error.response?.data?.message);
+        }
+    }
+
+    async getTaskOne(id) {
+        try {
+                const response = await TaskService.getOne(id);
+                if(response && response.data) {
+                    return response.data;
+                }
+                return response;
+        } catch (error) {
+            throw Error(error.response?.data?.message);
         }
     }
 } 

@@ -15,7 +15,7 @@ const AppRouter = () => {
                 <Route key={path} path={path} element={element}/>
             )}
 
-            <Route path='*' element={<Navigate to='/login' />}/>
+            {/* <Route path='*' element={<Navigate to='/login' />}/> */}
         </Routes>
     );
 }

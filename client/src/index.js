@@ -12,7 +12,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Context.Provider value={{
     user: new UserStore(),
-    task: new TaskStore()
+    tasks: new TaskStore()
   }}>
     <App />
   </Context.Provider>

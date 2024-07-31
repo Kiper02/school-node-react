@@ -1,9 +1,12 @@
 import React from 'react';
+import MapBaseComponent from '../components/Map/MapBaseComponent';
+import NavBarComponent from '../components/NavBar/NavBarComponent';
 
 const MapComponent = () => {
     return (
         <div>
-            MAP
+            <NavBarComponent />
+            <MapBaseComponent /> 
         </div>
     );
 }

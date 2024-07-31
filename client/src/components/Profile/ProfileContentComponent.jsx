@@ -6,15 +6,14 @@ import ExperienceBarComponent from '../ExperienceBar/ExperienceBarComponent';
 import WeeklyExpChartComponent from '../WeeklyExpChart/WeeklyExpChartComponent';
 import { Context } from '../../index';
 import { jwtDecode } from 'jwt-decode';
+import { observer } from 'mobx-react-lite';
 
 
 
 const ProfileContentComponent = () => {
-    const currentExp = 0; // текущий опыт
-    const maxExp = 100;    // максимальный опыт
+    const {user} = useContext(Context)
 
     const expData = [10, 20, 20, 0, 50, 60, 70];
-    const {user} = useContext(Context)
 
     const token = localStorage.getItem('token')
     const dataUser = jwtDecode(token);
@@ -30,6 +29,10 @@ const ProfileContentComponent = () => {
         }
     }, [dataUser.id])
 
+    const currentExp = user.info.exp; 
+    const maxExp = 100;
+    const lvl = user.info.lvl
+    const {firstname, surname} = user.info;
 
 
     return (
@@ -37,7 +40,17 @@ const ProfileContentComponent = () => {
             <div className={styles.content_wrapp}>
                 <div className={styles.profile}>
                     <img width={180} height={180} src={profile} />
+                    <h4>{firstname}@{surname}.school.com</h4>
+                    <div className={styles.info_lvl}>
+                        <p className={styles.lvl}>уровень {lvl}</p>
+                        <p>{currentExp}%</p>
+                    </div>
                     <ExperienceBarComponent currentExp={currentExp} maxExp={maxExp} />
+                    <h4 className={styles.header_dot}>Точки</h4>
+                    <div className={styles.dot}>
+                        <p className={styles.dotexp}>0 exp</p>
+                        <p className={styles.dotmany}>0 монет</p>
+                    </div>
                 </div>
 
                 <div className={styles.info}>
@@ -60,4 +73,4 @@ const ProfileContentComponent = () => {
     );
 }
 
-export default ProfileContentComponent;
+export default observer(ProfileContentComponent);

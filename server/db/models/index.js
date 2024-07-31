@@ -1,5 +1,6 @@
 import Achievement from "./Achievement.js";
 import Task from "./Task.js";
+import TaskDependency from "./TaskDependency.js";
 import TaskUser from "./TaskUser.js";
 import Theory from "./Theory.js";
 import Token from "./Token.js";
@@ -28,6 +29,7 @@ Theory.belongsTo(Task);
 Type.hasMany(Task, {foreignKey: 'type_id'});
 Task.belongsTo(Type, {foreignKey: 'type_id'});
 
+Task.belongsToMany(Task, {through: TaskDependency, as: 'Dependencies', foreignKey: 'task_id', otherKey: 'dependency_id' })
 
 export {
     Achievement,
@@ -36,5 +38,6 @@ export {
     Type,
     User,
     Token,
-    UserInfo
+    UserInfo,
+    TaskDependency
 }

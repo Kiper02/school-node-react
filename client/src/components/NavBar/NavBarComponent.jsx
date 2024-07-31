@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Context } from '../../index';
 import styles from './NavBar.module.css';
 import { NavLink } from 'react-router-dom';
 
 const NavBarComponent = () => {
     const {user} = useContext(Context)
+    const [active, setActive] = useState('')
 
     const handleExit = () => {
         user.logout();
@@ -18,6 +19,9 @@ const NavBarComponent = () => {
                 </li>
                 <li className={styles.nav_item}>
                     <NavLink className={styles.link} to='/tasks'>Задачи</NavLink>
+                </li>
+                <li className={styles.nav_item}>
+                    <NavLink className={styles.link} to='/profile'>Профиль</NavLink>
                 </li>
                 <li className={styles.nav_item}>
                     <NavLink onClick={handleExit} className={styles.link} to='/login'>Выйти</NavLink>
