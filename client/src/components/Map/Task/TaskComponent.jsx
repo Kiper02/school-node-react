@@ -1,17 +1,16 @@
 import React, { useContext } from 'react';
 import styles from './Task.module.css'
+import { Handle } from '@xyflow/react';
 
 
-const TaskComponent = ({name, type, description}) => {
+const TaskComponent = ({data, numEdges}) => {
 
 
     return (
         <div className={styles.wrapp}>
-            <div className={styles.heading}>
-                <p>{name}</p>
-                <p>{description}</p>
-                <p>{type}</p>
-            </div>        
+            <Handle className={styles.handle} type="target" position="left"/>
+            <div className={styles.label}>{data.label}</div>
+            <Handle className={styles.handle} type="source" position="right"  />
         </div>
     );
 }

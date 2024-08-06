@@ -8,11 +8,11 @@ ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, 
 
 const RadarChartComponent = () => {
     const [types, setTypes] = useState([]);
-    const { task } = useContext(Context);
+    const { tasks } = useContext(Context);
 
     const fetchTypes = async () => {
         try {
-            const response = await task.typeAll();
+            const response = await tasks.typeAll();
             if (response && response.data) {
                 setTypes(response.data.map(item => item.name)); // Предполагаем, что в данных есть свойство name
             } else {

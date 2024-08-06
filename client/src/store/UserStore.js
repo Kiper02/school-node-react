@@ -73,12 +73,16 @@ export default class UserStore {
 
     async checkAuth() {
         try {
+            const refreshToken = localStorage.getItem('token')
+           
+            document.cookie = `refreshToken=${refreshToken}; SameSite=None; Secure`
             const response = await axios.get(`${process.env.REACT_APP_API_URL}/user/refresh`, {withCredentials: true})
             localStorage.setItem('token', response.data.accessToken);
             this.setIsAuth(true);
             this.setUser(response.data.user);
+            
         } catch (error) {
-            throw Error(error.response?.data?.message)
+            // throw Error(error.response?.data?.message)
         }
     }
 

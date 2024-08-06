@@ -4,7 +4,6 @@ import ApiError from "../exceptions/ApiError.js";
 class TaskService {
     async create(data) {
         const type = await Type.findOne({where: {name: data.type}});
-        
 
         const task = await Task.create({
             type_id: type.id,
