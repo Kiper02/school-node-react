@@ -119,4 +119,18 @@ export default class TaskStore {
             throw Error(error.response?.data?.message);
         }
     }
+
+    async editTask(id, status) {
+        try {
+            const response = await TaskService.editTask(id, status);
+            if(response && response.data) {
+                this.setTasks(this.tasks.map(task =>
+                    task.id === id ? {...task, status} : task
+                ))
+                return response.data;
+            }
+        } catch (error) {
+            throw Error(error.response?.data?.message)
+        }
+    }
 } 

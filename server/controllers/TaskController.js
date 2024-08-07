@@ -28,6 +28,16 @@ class TaskController {
             next(error)
         }
     }
+
+    async editTask(req, res, next) {
+        try {
+            const {id, status} = req.body;
+            const taskData = await TaskService.editTask(id, status);
+            return res.json(taskData)
+        } catch (error) {
+            next(error)
+        }
+    }
 }
 
 export default new TaskController();

@@ -13,4 +13,8 @@ export default class TaskService {
     static async getOne(id){
         return $api.get(`/task/${id}`);
     }
+
+    static async editTask(id, status) {
+        return $api.patch('/task', {id, status})
+    }
 }

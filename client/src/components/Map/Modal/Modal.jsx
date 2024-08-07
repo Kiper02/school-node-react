@@ -11,6 +11,10 @@ const Modal = ({visible, task}) => {
     }
     const currentTask = tasks.tasks.find(item => item.id == task.id)
 
+    const handleStarted = async () => {
+        const data = await tasks.editTask(currentTask.id, 'Started');
+    }
+
     
 
 
@@ -19,11 +23,26 @@ const Modal = ({visible, task}) => {
             className={visible ? 'visible' : 'hidden'}
             onClick={stopPropagation}      
             >
-                <h2 className='name text'>{currentTask.name}</h2>
-                <h4 className='desc text'>{currentTask.description}</h4>
-                <h4 className='exp text'>{currentTask.exp}</h4>
-                <button className='btn_add'>Приступить</button>
-                <h4 className='status text'>{currentTask.status}</h4>
+                <h2 className='name'>{currentTask.name}</h2>
+                <h4 className='desc'>
+                    <b>Тема: </b>
+                    {currentTask.description}
+                </h4>
+                <h4 className='exp'>
+                    Опыт: {currentTask.exp}
+                </h4>
+                {
+                    currentTask.status === 'Not Started'
+                    ?  <button 
+                    className='btn_add'
+                    onClick={handleStarted}
+                    >
+                        Приступить
+                    </button>
+                    : <p>Вы приступили к задаче</p>
+                }
+                
+                <h4 className='status'>{currentTask.status}</h4>
         </div>
     );
 }

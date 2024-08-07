@@ -37,6 +37,18 @@ class TaskService {
         });
         return tasks;
     }
+
+    async editTask(id, status) {
+        const [updated] = await Task.update({status}, {
+            where: {id: id}
+        })
+
+        if(updated === 0) {
+            throw ApiError.badRequest('Такой записи не существует')
+        }
+        const updatedTask = await Task.findOne({where: {id: id}})
+        return updatedTask;
+    }
 }
 
 export default new TaskService();
