@@ -4,3 +4,11 @@
     background-color: #0A9A54;
     border-radius: 10px;
 }
+
+.source {
+    background-color: rgb(2, 73, 2);
+}
+
+.target {
+    background-color: brown;
+}
