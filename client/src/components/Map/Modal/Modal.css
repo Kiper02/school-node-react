@@ -1,0 +1,50 @@
+.visible {
+    position: absolute;
+    z-index: 1;
+    width: 400px;
+    height: 200px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    padding: 10px;
+
+    border-radius: 10px;
+    background-color: rgb(148, 180, 130);
+    color: rgb(71, 71, 71);
+}
+
+.hidden {
+    display: none;
+}
+
+.name {
+    position: relative;
+}
+
+
+.btn_add {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: rgb(86, 156, 77);
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+}
+
+.btn_add:hover {
+    background-color: rgb(75, 138, 66);
+}
+
+
+.status {
+    position: absolute;
+    bottom: 10px;
+
+    padding: 10px;
+    background-color: rgb(105, 152, 241);
+    border-radius: 10px;
+}
