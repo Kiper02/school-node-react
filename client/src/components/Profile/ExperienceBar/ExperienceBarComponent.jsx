@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import styles from './ExperienceBar.module.css'
-import { Context } from '../../index';
+import { Context } from '../../../index';
 
 const ExperienceBarComponent = ({ currentExp, maxExp }) => {
 

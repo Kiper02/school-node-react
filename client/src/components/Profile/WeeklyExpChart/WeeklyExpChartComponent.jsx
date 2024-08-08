@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, LineElement, PointElement, LinearScale, Title, CategoryScale, Tooltip, Legend } from 'chart.js';
 import styles from './WeeklyExpChart.module.css'
-import { Context } from '../../index';
+import { Context } from '../../../index';
 import { observer } from 'mobx-react-lite';
 
 

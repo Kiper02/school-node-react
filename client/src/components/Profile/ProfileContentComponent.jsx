@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from 'react';
 import styles from './ProfileContent.module.css'
 import profile from './../../assets/profile.png'
-import RadarChartComponent from '../RadarChartComponent';
-import ExperienceBarComponent from '../ExperienceBar/ExperienceBarComponent';
-import WeeklyExpChartComponent from '../WeeklyExpChart/WeeklyExpChartComponent';
+import RadarChartComponent from './RadarChartComponent';
+import ExperienceBarComponent from './ExperienceBar/ExperienceBarComponent';
+import WeeklyExpChartComponent from './WeeklyExpChart/WeeklyExpChartComponent';
 import { Context } from '../../index';
 import { jwtDecode } from 'jwt-decode';
 import { observer } from 'mobx-react-lite';
@@ -11,7 +11,7 @@ import { observer } from 'mobx-react-lite';
 
 
 const ProfileContentComponent = () => {
-    const {user} = useContext(Context)
+    const {user, tasks} = useContext(Context)
 
     const expData = [10, 20, 20, 0, 50, 60, 70];
 
@@ -20,6 +20,7 @@ const ProfileContentComponent = () => {
     
     const fetchUserInfo = async () => {
         await user.getInfo(dataUser.id);
+        await tasks.getTasksAll();
     }
 
     useEffect(() => {

@@ -1,12 +1,14 @@
 import React from 'react';
 import NavBarComponent from '../components/NavBar/NavBarComponent';
+import TaskContentComponent from '../components/Tasks/TaskContentComponent';
 
-const TaskComponent = () => {
+const TasksComponent = () => {
     return (
         <div>
             <NavBarComponent />
+            <TaskContentComponent />
         </div>
     );
 }
 
-export default TaskComponent;
+export default TasksComponent;
