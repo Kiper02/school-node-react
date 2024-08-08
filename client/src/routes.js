@@ -6,7 +6,8 @@ import MapComponent from "./pages/MapComponent"
 import ProfileComponent from "./pages/ProfileComponent"
 import TaskComponent from "./pages/TaskComponent"
 import TasksComponent from "./pages/TasksComponent"
-import { ACHIEVEMENTS_ROUTE, ADMIN_ROUTE, LOGIN_ROUTE, MAP_ROUTE, PROFILE_ROUTE, REGISTRATION_ROUTE, TASK_ROUTE, TASKS_ROUTE } from "./utils/consts"
+import TheoryComponent from "./pages/TheoryComponent"
+import { ACHIEVEMENTS_ROUTE, ADMIN_ROUTE, LOGIN_ROUTE, MAP_ROUTE, PROFILE_ROUTE, REGISTRATION_ROUTE, TASK_ROUTE, TASKS_ROUTE, THEORY_ROUTE } from "./utils/consts"
 
 export const authRoutes = [
     {
@@ -32,6 +33,10 @@ export const authRoutes = [
     {
         path: TASKS_ROUTE, 
         element: <TasksComponent />
+    },
+    {
+        path: THEORY_ROUTE,
+        element: <TheoryComponent />
     },
 ]
 

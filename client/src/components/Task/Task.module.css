@@ -1,0 +1,63 @@
+.wrapp {
+    width: 100vw;
+    height: 100vh;
+    background-color: #161D27;
+    color: white;
+    display: flex;
+    justify-content: flex-start; 
+    align-items: flex-start; 
+    padding: 20px; 
+}
+
+.content_wrapp {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.headers {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    background-color: rgb(22, 63, 139);
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.header {
+    margin-bottom: 10px;
+    text-align: center; 
+}
+
+.thematic {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.btn {
+    width: auto;
+    padding: 10px 20px;
+    border: none;
+    background-color: #11c420;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+}
+
+.btn:hover {
+    background-color: #48d143;
+}
+
+.desc {
+    padding: 20px; 
+}
+
+.task {
+    margin-top: 15px;
+}

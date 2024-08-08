@@ -5,6 +5,7 @@ const router = new Router();
 
 
 router.post('/', TheoryController.create);
+router.delete('/', TheoryController.remove)
 router.get('/:id', TheoryController.getOne);
 router.get('/', TheoryController.getAll);
 

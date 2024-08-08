@@ -1,14 +1,14 @@
 import React from 'react';
 import NavBarComponent from '../components/NavBar/NavBarComponent';
-import Task from '../components/Task/Task';
+import Theory from '../components/Theory/Theory';
 
-const TaskComponent = () => {
+const TheoryComponent = () => {
     return (
         <div>
             <NavBarComponent />
-            <Task />
+            <Theory />
         </div>
     );
 }
 
-export default TaskComponent;
+export default TheoryComponent;

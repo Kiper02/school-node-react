@@ -4,21 +4,10 @@ import ApiError from "../exceptions/ApiError.js";
 class TheoryService {
     async create(data) {
 
-
-        const task = await Task.findOne({
-            include: [{
-                model: Type,
-                where: {name: data.type}
-            }],
-            where: {name: data.task}
-        })
-
         const theory = await Theory.create({
             name: data.name,
-            description: data.description,
             text: data.text,
-            type: data.type,
-            task_id: task.id
+            task_id: data.task_id
         })
 
         return theory;
@@ -35,6 +24,14 @@ class TheoryService {
     async getAll() {
         const theories = await Theory.findAll();
         return theories;
+    }
+
+    async remove(id) {
+        const theory = await Theory.destroy({where: id});
+        if(theory === 0) {
+            throw ApiError.badRequest('Такой записи не сущетсвует')
+        }
+        return theory;
     }
 }
 

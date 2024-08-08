@@ -9,6 +9,7 @@ class TaskService {
             type_id: type.id,
             name: data.name,
             description: data.description,
+            text: data.text,
             exp: data.exp,
             status: data.status,
         })

@@ -1,0 +1,10 @@
+.wrapp {
+    width: 100vw;
+    height: 100vh;
+    background-color: #161D27;
+    color: white;
+    display: flex;
+    justify-content: flex-start; 
+    align-items: flex-start; 
+    padding: 20px; 
+}

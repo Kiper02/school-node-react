@@ -28,6 +28,16 @@ class TheoryController {
             next(error)
         }
     }
+
+    async remove(req, res, next) {
+        try {
+            const {id} = req.body;
+            const theoryData = await TheoryService.remove(id);
+            return res.json(theoryData);
+        } catch (error) {
+            next(error)
+        }
+    }
 }
 
 export default new TheoryController();
