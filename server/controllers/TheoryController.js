@@ -13,8 +13,9 @@ class TheoryController {
     async getOne(req, res, next) {
         try {
             const {id} = req.body;
+            console.log(id);
             const theoryData = await TheoryService.getOne(id);
-            return res.json(id);
+            return res.json(theoryData);
         } catch (error) {
             next(error)
         }

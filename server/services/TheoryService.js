@@ -14,6 +14,7 @@ class TheoryService {
     }
 
     async getOne(id) {
+        console.log(id);
         const theory = await Theory.findByPk(id);
         if(!theory) {
             throw ApiError.badRequest('Такой записи не существует');

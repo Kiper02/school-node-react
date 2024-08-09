@@ -1,6 +1,7 @@
 import {makeAutoObservable} from 'mobx'
 import TypeService from '../services/TypeService';
 import TaskService from '../services/TaskService';
+import TheoryService from '../services/TheoryService';
 
 export default class TaskStore {
     constructor() {
@@ -128,6 +129,52 @@ export default class TaskStore {
                     task.id === id ? {...task, status} : task
                 ))
                 return response.data;
+            }
+        } catch (error) {
+            throw Error(error.response?.data?.message)
+        }
+    }
+
+    async createTheory(name, text, task_id) {
+        try {
+            const response = await TheoryService.create(name, text, task_id);
+            if(response && response.data) {
+                this.setTheories([...this.theories, response.data]);
+                return response.data;
+            }
+        } catch (error) {
+            throw Error(error.response?.data?.message)
+        }
+    }
+
+    async getTheoriesAll() {
+        try {
+            const response = await TheoryService.getAll();
+            if(response && response.data) {
+                this.setTheories(response.data);
+                return response.data;
+            }
+        } catch (error) {
+            throw Error(error.response?.data?.message)
+        }
+    }
+
+    async getTheoryOne(id) {
+        try {
+            const response = await TheoryService.getOne(id)
+            if(response && response.data) {
+                return response.data;
+            }
+        } catch (error) {
+            throw Error(error.response?.data?.message)
+        }
+    }
+
+    async removeTheory(id) {
+        try {
+            const response = await TheoryService.remove(id);
+            if(response && response.data) {
+               this.setTheories(this._theories.filter(theory => theory.id !== id))
             }
         } catch (error) {
             throw Error(error.response?.data?.message)
