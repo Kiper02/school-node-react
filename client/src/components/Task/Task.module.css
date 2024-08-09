@@ -3,15 +3,13 @@
     height: 100vh;
     background-color: #161D27;
     color: white;
-    display: flex;
-    justify-content: flex-start; 
-    align-items: flex-start; 
     padding: 20px; 
 }
 
 .content_wrapp {
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 100%;
 }
 
@@ -34,11 +32,12 @@
 }
 
 .thematic {
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     text-align: center;
 }
 
 .btn {
+    margin-top: 20px;
     width: auto;
     padding: 10px 20px;
     border: none;
@@ -60,4 +59,5 @@
 
 .task {
     margin-top: 15px;
+    margin-bottom: 50px;
 }

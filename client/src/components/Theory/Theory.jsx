@@ -19,9 +19,9 @@ const Theory = () => {
 
     return (
         <div className={styles.wrapp}>
-            {tasks.theories 
+            {tasks?.theories 
                 ? (
-                    theory.map(item =>
+                    theory?.map(item =>
                         <div key={item.id}>
                             <h1>{item.name}</h1>
                             <p>{item.text}</p>
