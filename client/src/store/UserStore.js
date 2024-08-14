@@ -96,4 +96,15 @@ export default class UserStore {
             throw Error(error.response?.data?.message)
         }
     }
+
+    async userDataInfo() {
+        try {
+            const response = await UserInfoService.userData();
+            if(response && response.data) {
+                return response.data;
+            }
+        } catch (error) {
+            throw Error(error.response?.data?.message)
+        }
+    }
 } 

@@ -1,4 +1,4 @@
-import { User } from "../db/models/index.js";
+import { User, Token } from "../db/models/index.js";
 import ApiError from "../exceptions/ApiError.js";
 import {generateFromEmail} from "unique-username-generator";
 import bcrypt from 'bcrypt';
@@ -78,6 +78,15 @@ class UserService {
         
         await TokenService.saveToken(userDto.id, tokens.refreshToken);
         return {...tokens, user: UserDto};
+    }
+
+    async getUserOne(refreshToken) {
+        const data = await Token.findOne({where: {refreshToken}});
+        if(!data) {
+            return ApiError.badRequest('Такого пользователя не существует или неверный refreshToken');
+        }
+        const userData = await User.findOne({where: {id: data.user_id}});
+        return userData;
     }
 }
 

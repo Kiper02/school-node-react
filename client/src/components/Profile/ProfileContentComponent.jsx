@@ -13,6 +13,8 @@ import { observer } from 'mobx-react-lite';
 const ProfileContentComponent = () => {
     const {user, tasks} = useContext(Context)
 
+    console.log(user.isAuth);
+
     const expData = [10, 20, 20, 0, 50, 60, 70];
 
     const token = localStorage.getItem('token')

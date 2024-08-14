@@ -1,0 +1,25 @@
+.wrapp {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 10px;
+
+    width: 340px;
+    height: 400px;
+
+    background-color: rgb(192, 247, 156);
+    border-radius: 20px;
+
+
+}
+
+.input {
+    width: 240px;
+    height: 30px;
+    margin-bottom: 10px;
+
+    border-radius: 8px;
+    border: none;
+}
